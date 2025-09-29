@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación: Confianza Colectiva</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --stellar-bg: #080808;
+            --stellar-yellow: #FFC84B;
+            --stellar-text-header: #FFFFFF;
+            --stellar-text-body: #CCCCCC;
+            --stellar-text-muted: #888888;
+            --phone-width: 375px;
+            --phone-height: 812px;
+            --app-bg-color: #f7f7f7;
+            --primary-text-color: #2b2b2b;
+            --secondary-text-color: #888888;
+            --button-bg-color: #333333;
+            --button-text-color: #ffffff;
+            --accent-color: #e57373;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--stellar-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .presentation-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 100px;
+            width: 100%;
+            max-width: 1200px;
+            flex-wrap: wrap;
+        }
+        
+        .phone-mockup-wrapper {
+            flex-shrink: 0;
+            background: #1a1a1a; padding: 12px; border-radius: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 2px 2px rgba(255,255,255,0.1);
+            position: relative;
+        }
+        .phone-mockup-wrapper::before {
+            content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+            width: 150px; height: 25px; background: #1a1a1a;
+            border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10;
+        }
+        .phone-container {
+            width: var(--phone-width); height: var(--phone-height); background-color: var(--app-bg-color);
+            border-radius: 40px; overflow: hidden; position: relative;
+        }
+        
+        .info-panel.stellar-theme {
+            color: var(--stellar-text-body);
+            max-width: 500px;
+        }
+
+        .info-panel.stellar-theme h1 {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--stellar-text-header);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .info-panel.stellar-theme h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 5px;
+            background-color: var(--stellar-yellow);
+            margin-top: 15px;
+        }
+
+        .info-panel.stellar-theme .tagline {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--stellar-text-muted);
+            margin-bottom: 40px;
+        }
+        
+        .info-panel.stellar-theme h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--stellar-text-header);
+            text-transform: uppercase;
+            border-left: 4px solid var(--stellar-yellow);
+            padding-left: 15px;
+            margin-top: 45px;
+            margin-bottom: 20px;
+        }
+        
+        .info-panel.stellar-theme p, .info-panel.stellar-theme li {
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        .info-panel.stellar-theme ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-panel.stellar-theme li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        .info-panel.stellar-theme li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--stellar-yellow);
+            font-weight: 700;
+        }
+        .info-panel.stellar-theme strong {
+            color: var(--stellar-text-header);
+            font-weight: 600;
+        }
+        
+        .screen { width: 100%; height: 100%; display: flex; flex-direction: column; padding: 40px 25px 30px 25px; box-sizing: border-box; opacity: 0; position: absolute; top: 0; left: 0; transition: opacity 0.4s ease-in-out; pointer-events: none; }
+        .screen.active { opacity: 1; pointer-events: auto; }
+        #screen-group h1 { font-size: 26px; font-weight: 700; text-align: center; margin: 15px 0 45px 0; color: var(--primary-text-color); }
+        .profile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px 20px; flex-grow: 1; }
+        .profile-card { text-align: center; }
+        .profile-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; border: 2px solid #e0e0e0; }
+        .profile-card p { font-size: 13px; font-weight: 500; color: var(--secondary-text-color); margin: 0; }
+        .join-button { width: 100%; padding: 16px; background-color: var(--button-bg-color); color: var(--button-text-color); border: none; border-radius: 30px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: auto; transition: background-color 0.2s; }
+        .join-button:hover { background-color: #555555; }
+        .action-header { display: flex; align-items: center; width: 100%; position: absolute; top: 40px; left: 25px; box-sizing: border-box; width: calc(100% - 50px); }
+        .back-button { font-size: 28px; cursor: pointer; color: var(--primary-text-color); font-weight: 600; padding: 10px; margin: -10px; }
+        .action-header h2 { font-size: 18px; font-weight: 600; color: var(--primary-text-color); margin: 0; flex-grow: 1; text-align: center; padding-right: 28px; }
+        .action-content { width: 100%; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .action-label { font-size: 16px; color: var(--secondary-text-color); margin: 0 0 8px 0; }
+        .action-value { font-size: 22px; font-weight: 700; margin: 0 0 50px 0; color: var(--primary-text-color); }
+        .confirm-button-container { width: 180px; height: 180px; border: 4px solid var(--accent-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.2s ease-in-out; box-shadow: 0px 5px 15px rgba(229, 115, 115, 0.2); }
+        .confirm-button-container:hover { background-color: rgba(229, 115, 115, 0.05); transform: scale(1.05); }
+        .confirm-button-text { font-size: 24px; font-weight: 600; color: var(--accent-color); }
+        .action-info { font-size: 13px; color: #b0b0b0; margin-top: 25px; }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+        
+        <div class="phone-mockup-wrapper">
+            <div class="phone-container">
+                <div class="screen active" id="screen-group">
+                    <h1>Confianza Colectiva</h1>
+                    <div class="profile-grid">
+                        <div class="profile-card"><img src="https://i.pravatar.cc/150?img=68" alt="User Avatar"><p>Juan P.</p></div>
+                        <div class="profile-card"><img src="https://i.pravatar.cc/150?img=49" alt="User Avatar"><p>Ana S.</p></div>
+                        <div class="profile-card"><img src="https://i.pravatar.cc/150?img=32" alt="User Avatar"><p>Pedro R.</p></div>
+                        <div class="profile-card"><img src="https://i.pravatar.cc/150?img=35" alt="User Avatar"><p>Maria M.</p></div>
+                        <div class="profile-card"><img src="https://i.pravatar.cc/150?img=20" alt="User Avatar"><p>Luisa H.</p></div>
+                        <div class="profile-card"><img src="https://i.pravatar.cc/150?img=14" alt="User Avatar"><p>Carlos V.</p></div>
+                        <div class="profile-card"><img src="https://i.pravatar.cc/150?img=47" alt="User Avatar"><p>Sofia C.</p></div>
+                        <div class="profile-card"><img src="https://i.pravatar.cc/150?img=59" alt="User Avatar"><p>David G.</p></div>
+                        <div class="profile-card"><img src="https://i.pravatar.cc/150?img=31" alt="User Avatar"><p>Elena B.</p></div>
+                    </div>
+                    <button class="join-button" id="joinButton">Join</button>
+                </div>
+                <div class="screen" id="screen-action">
+                    <div class="action-header"><span class="back-button" id="backButton">&larr;</span><h2>Confianza Colectiva</h2></div>
+                    <div class="action-content">
+                        <p class="action-label">Próximo pago mensual</p>
+                        <p class="action-value">50.00 USDC</p>
+                        <div class="confirm-button-container"><span class="confirm-button-text">Confirmar</span></div>
+                        <p class="action-info">Se enviará el pago a la billetera de Maria M.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-panel stellar-theme">
+            <h1>Confianza Colectiva</h1>
+            <p class="tagline">Asegurando tradiciones, construyendo futuros.</p>
+            
+            <h2>El Problema</h2>
+            <p>En América Latina, millones de personas dependen de círculos de ahorro informales ('Tandas') para alcanzar sus sueños. Este sistema, basado en la confianza, es vulnerable a riesgos, disputas y a la ineficiencia del dinero en efectivo.</p>
+            
+            <h2>Nuestra Solución</h2>
+            <p>Digitalizamos esta tradición ancestral en la red de Stellar, usando contratos inteligentes de Soroban para crear un sistema seguro, transparente y automatizado.</p>
+            <ul>
+                <li><strong>Confianza Inquebrantable:</strong> Las reglas del grupo se convierten en código inmutable gracias a Soroban.</li>
+                <li><strong>Costo Cero y Velocidad:</strong> Las transacciones con USDC en Stellar son instantáneas y casi gratuitas.</li>
+                <li><strong>Inclusión Financiera Real:</strong> Creamos una puerta de acceso al sistema financiero para quienes más lo necesitan.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        const screenGroup = document.getElementById('screen-group');
+        const screenAction = document.getElementById('screen-action');
+        const joinButton = document.getElementById('joinButton');
+        const backButton = document.getElementById('backButton');
+
+        function showScreen(screenToShow) {
+            screenGroup.classList.remove('active');
+            screenAction.classList.remove('active');
+            screenToShow.classList.add('active');
+        }
+
+        joinButton.addEventListener('click', () => {
+            showScreen(screenAction);
+        });
+
+        backButton.addEventListener('click', () => {
+            showScreen(screenGroup);
+        });
+    </script>
+</body>
+</html>
