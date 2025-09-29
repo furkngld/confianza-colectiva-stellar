@@ -4,9 +4,15 @@
 <h3 align="center">Asegurando tradiciones, construyendo futuros.</h3>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Stellar-L1-black?style=for-the-badge&logo=stellar" alt="Stellar Badge">
-  <img src="https://img.shields.io/badge/Soroban-Smart%20Contracts-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="Soroban Badge">
-  <img src="https://img.shields.io/badge/Ideathon-Track%20Universitario-blue?style=for-the-badge" alt="Ideathon Badge">
+  <a href="https://stellar.org" target="_blank">
+    <img src="https://img.shields.io/badge/Stellar-L1-black?style=for-the-badge&logo=stellar" alt="Stellar Badge">
+  </a>
+  <a href="https://soroban.stellar.org" target="_blank">
+    <img src="https://img.shields.io/badge/Soroban-Smart%20Contracts-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="Soroban Badge">
+  </a>
+  <a href="https://dorahacks.io/hackathon/ideatontelluscoop/detail" target="_blank">
+    <img src="https://img.shields.io/badge/Ideathon-Track%20Universitario-blue?style=for-the-badge" alt="Ideathon Badge">
+  </a>
 </p>
 
 ---
